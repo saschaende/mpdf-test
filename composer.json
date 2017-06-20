@@ -1,0 +1,26 @@
+{
+  "name": "saschaende/mpdf-test",
+  "description": "Test mpdf execution time",
+  "keywords": [
+    "pdf",
+    "generator"
+  ],
+  "homepage": "http://www.sascha-ende.de",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sascha Ende",
+      "email": "info@sascha-ende.de",
+      "homepage": "http://www.sascha-ende.de"
+    }
+  ],
+  "require": {
+    "mpdf/mpdf": "^6.1"
+  },
+  "config": {
+    "preferred-install": "source",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$start = $time;
+
+// ==================================================
+
+error_reporting(E_ERROR);
+
+// composer autoloader
+require_once __DIR__ . '/vendor/autoload.php';
+
+// initialize some extensions
+$mpdf = new \mPDF();
+
+// generate document basics
+$stylesheet = file_get_contents('style.css');
+$mpdf->WriteHTML('<style>' . $stylesheet . '</style>');
+$mpdf->setFooter('{PAGENO}');
+
+$html = file_get_contents('lorem.txt');
+
+// put contents
+for($i=0;$i<=82;$i++){
+    $mpdf->WriteHTML('<html><body><article class="markdown-body">' . $html . '</article></body></html>');
+
+    // Get actual page
+    echo "page: ".$mpdf->PageNo()."\n";
+}
+
+// save pdf
+$pdfPath = 'lorem.pdf';
+$mpdf->Output($pdfPath, 'F');
+
+// ==================================================
+
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$finish = $time;
+$total_time = round(($finish - $start), 4);
+echo 'Page generated in '.$total_time.' seconds.';
